@@ -1,0 +1,2 @@
+# Exceptio
+exceptions class  
