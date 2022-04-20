@@ -1,6 +1,7 @@
 #pragma once
 
 #include <stdint.h>
+#include <cstring>
 
 #ifndef EXCEPTIO_HPP
 #define EXCEPTIO_HPP
@@ -33,6 +34,7 @@ class Exceptio {
 		friend bool checking_index_for_out(Exceptio&);
 		friend bool checking_description_for_out(Exceptio&);
 		friend bool checking_comment_for_out(Exceptio&);
+	//
 	public:
 		int16_t get_index();
 		const char* get_description();
