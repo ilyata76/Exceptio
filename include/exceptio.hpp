@@ -44,8 +44,11 @@ class Exceptio {
 		const char* get_raw_description();
 		const char* get_raw_comment();
 
+		// Checks whether the index was entered or entered correctly (if yes returns not 0)
 		friend bool checking_index_for_out(Exceptio&);
+		// Checks whether the description string was entered (if yes returns not 0)
 		friend bool checking_description_for_out(Exceptio&);
+		// Checks whether the comment string was entered (if yes returns not 0)
 		friend bool checking_comment_for_out(Exceptio&);
 	//
 	public:
