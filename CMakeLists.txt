@@ -15,6 +15,7 @@ set (ENTRYPOINT
 
 set (HEADERS 
     include/exceptio.hpp
+    include/my_assert.hpp
 )
 
 set (SOURCES 
