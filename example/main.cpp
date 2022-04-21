@@ -3,7 +3,9 @@
 #include <iostream>
 
 int main(int argc, char** argv) {
-	Exceptio a(1000);
-	std::cout << a.get_index();
+	try {
+		throw Exceptio(1, "description", "comment");
+	} catch (Exceptio& E) {
+	}
 	return 0;
 }

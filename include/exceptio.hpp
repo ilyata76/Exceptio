@@ -18,10 +18,23 @@ class Exceptio {
 
 	public:
 	//
+		// INDEX - number of 16-bit integer for your enumeration and lists (if you see INT_PLUG you made a mistake)
 		Exceptio(int16_t index);
+
+		// INDEX - number of 16-bit integer for your enumeration and lists (if you see INT_PLUG you made a mistake)
+		// DESCRIPTION - string which should describe the problem
 		Exceptio(int16_t index, const char* description);
+
+		// DESCRIPTION - string which should describe the problem
 		Exceptio(const char* description);
+
+		// DESCRIPTION - string which should describe the problem
+		// COMMENT - optional str
 		Exceptio(const char* description, const char* comment);
+
+		// INDEX - number of 16-bit integer for your enumeration and lists (if you see INT_PLUG you made a mistake)
+		// DESCRIPTION - string which should describe the problem
+		// COMMENT - optional str
 		Exceptio(int16_t index, const char* description, const char* comment);
 	//
 		bool operator == (Exceptio& a);
