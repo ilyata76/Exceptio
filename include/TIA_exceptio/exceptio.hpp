@@ -3,14 +3,14 @@
 #include <stdint.h>
 #include <cstring>
 
-#ifndef EXCEPTIO_HPP
-#define EXCEPTIO_HPP
+#ifndef Exceptio_TIA_HPP
+#define Exceptio_TIA_HPP
 
 #define INT_PLUG INT16_MIN
 #define STR_PLUG "\0"
 
 // MAIN CLASS
-class Exceptio {
+class Exceptio_TIA {
 	protected:
 		int16_t index; // -32k +32k
 		const char* description;
@@ -19,25 +19,25 @@ class Exceptio {
 	public:
 	//
 		// INDEX - number of 16-bit integer for your enumeration and lists (if you see INT_PLUG you made a mistake)
-		Exceptio(int16_t index);
+		Exceptio_TIA(int16_t index);
 
 		// INDEX - number of 16-bit integer for your enumeration and lists (if you see INT_PLUG you made a mistake)
 		// DESCRIPTION - string which should describe the problem
-		Exceptio(int16_t index, const char* description);
+		Exceptio_TIA(int16_t index, const char* description);
 
 		// DESCRIPTION - string which should describe the problem
-		Exceptio(const char* description);
+		Exceptio_TIA(const char* description);
 
 		// DESCRIPTION - string which should describe the problem
 		// COMMENT - optional str
-		Exceptio(const char* description, const char* comment);
+		Exceptio_TIA(const char* description, const char* comment);
 
 		// INDEX - number of 16-bit integer for your enumeration and lists (if you see INT_PLUG you made a mistake)
 		// DESCRIPTION - string which should describe the problem
 		// COMMENT - optional str
-		Exceptio(int16_t index, const char* description, const char* comment);
+		Exceptio_TIA(int16_t index, const char* description, const char* comment);
 	//
-		bool operator == (Exceptio& a);
+		bool operator == (Exceptio_TIA& a);
 	//
 	protected:
 		int16_t get_raw_index();
@@ -45,11 +45,11 @@ class Exceptio {
 		const char* get_raw_comment();
 
 		// Checks whether the index was entered or entered correctly (if yes returns not 0)
-		friend bool checking_index_for_out(Exceptio&);
+		friend bool checking_index_for_out(Exceptio_TIA&);
 		// Checks whether the description string was entered (if yes returns not 0)
-		friend bool checking_description_for_out(Exceptio&);
+		friend bool checking_description_for_out(Exceptio_TIA&);
 		// Checks whether the comment string was entered (if yes returns not 0)
-		friend bool checking_comment_for_out(Exceptio&);
+		friend bool checking_comment_for_out(Exceptio_TIA&);
 	//
 	public:
 		int16_t get_index();
@@ -58,5 +58,5 @@ class Exceptio {
 
 };
 
-// childs by exceptio?
+// childs by Exceptio_TIA?
 #endif
