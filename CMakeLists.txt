@@ -1,17 +1,9 @@
-# |--- ONLY FOR EXAMPLE
-
-
+# MAKES LIBRARY
 # MIN VERSION
 cmake_minimum_required(VERSION 3.18)
 
 # SET PROJECT
-
-set(PROJECT EXCEPTIO)
-project(${PROJECT})
-
-set (ENTRYPOINT 
-    example/main.cpp
-)
+project(EXCEPTIO_CPP_LIBRARY)
 
 set (HEADERS 
     include/tia/exceptio.hpp
@@ -19,11 +11,11 @@ set (HEADERS
 )
 
 set (SOURCES 
-    include/tia/src_exceptio/exceptio.cpp
+    src/exceptio.cpp
 )
 
-add_executable (EXECUTABLE 
-	${ENTRYPOINT} 
-	${HEADERS} 
-	${SOURCES}
+add_library ( ${PROJECT_NAME}
+    STATIC 
+    ${HEADERS}
+    ${SOURCES}
 )
