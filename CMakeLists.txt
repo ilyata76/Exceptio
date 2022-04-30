@@ -14,12 +14,12 @@ set (ENTRYPOINT
 )
 
 set (HEADERS 
-    include/TIA_exceptio/exceptio.hpp
-    include/TIA_exceptio/my_assert.hpp
+    include/exceptio.hpp
+    include/my_assert.hpp
 )
 
 set (SOURCES 
-    include/TIA_exceptio/src_exceptio/main_class.cpp
+    include/src_exceptio/main_class.cpp
 )
 
 add_executable (EXECUTABLE 
