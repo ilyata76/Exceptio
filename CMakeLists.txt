@@ -6,12 +6,12 @@ cmake_minimum_required(VERSION 3.18)
 project(EXCEPTIO_CPP_LIBRARY)
 
 set (HEADERS 
-    ./tia/include/exceptio.hpp
-    ./tia/include/assert.hpp
+    ./include/exceptio.hpp
+    ./include/assert.hpp
 )
 
 set (SOURCES 
-    ./tia/src/exceptio.cpp
+    ./src/exceptio.cpp
 )
 
 add_library ( ${PROJECT_NAME}
