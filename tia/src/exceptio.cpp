@@ -1,4 +1,4 @@
-#include "../include/tia/exceptio.hpp"
+#include "../include/exceptio.hpp"
 
 bool checking_index(int i) {
 	return (i < INT16_MIN || i > INT16_MAX) ? false : true;
