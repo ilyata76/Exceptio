@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #ifndef MY_ASSERT_HPP
 #define MY_ASSERT_HPP
