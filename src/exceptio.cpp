@@ -6,40 +6,72 @@ bool checking_index(int i) {
 
 // index - number of 16-bit integer for your enumeration and lists (if you see INT_PLUG you made a mistake)
 Exceptio::Exceptio(int16_t index) {
-	this->comment = STR_PLUG;
-	this->description = STR_PLUG;
+	this->comment = std::wstring(STR_PLUG);
+	this->description = std::wstring(STR_PLUG);
 	this->index = checking_index(index) ? index : INT_PLUG;
 }
 
 // description - string which should describe the problem
-Exceptio::Exceptio(const char* description) {
-	this->comment = STR_PLUG;
-	this->description = description;
+Exceptio::Exceptio(const wchar_t* description) {
+	this->comment = std::wstring(STR_PLUG);
+	this->description = std::wstring(description);
+	this->index = INT_PLUG;
+}
+
+// description - string which should describe the problem
+Exceptio::Exceptio(const std::wstring& description) {
+	this->comment = std::wstring(STR_PLUG);
+	this->description = std::wstring(description);
 	this->index = INT_PLUG;
 }
 
 // description - string which should describe the problem
 // comment - optional str
-Exceptio::Exceptio(const char* description, const char* comment) {
-	this->comment = comment;
-	this->description = description;
+Exceptio::Exceptio(const wchar_t* description, const wchar_t* comment) {
+	this->comment = std::wstring(comment);
+	this->description = std::wstring(description);
+	this->index = INT_PLUG;
+}
+
+// description - string which should describe the problem
+// comment - optional str
+Exceptio::Exceptio(const std::wstring& description, const std::wstring& comment) {
+	this->comment = std::wstring(comment);
+	this->description = std::wstring(description);
 	this->index = INT_PLUG;
 }
 
 // index - number of 16-bit integer for your enumeration and lists (if you see INT_PLUG you made a mistake)
 // description - string which should describe the problem
-Exceptio::Exceptio(int16_t index, const char* description) {
-	this->comment = STR_PLUG;
-	this->description = description;
+Exceptio::Exceptio(int16_t index, const wchar_t* description) {
+	this->comment = std::wstring(STR_PLUG);
+	this->description = std::wstring(description);
+	this->index = checking_index(index) ? index : INT_PLUG;
+}
+
+// index - number of 16-bit integer for your enumeration and lists (if you see INT_PLUG you made a mistake)
+// description - string which should describe the problem
+Exceptio::Exceptio(int16_t index, const std::wstring& description) {
+	this->comment = std::wstring(STR_PLUG);
+	this->description = std::wstring(description);
 	this->index = checking_index(index) ? index : INT_PLUG;
 }
 
 // index - number of 16-bit integer for your enumeration and lists (if you see INT_PLUG you made a mistake)
 // description - string which should describe the problem
 // comment - optional str
-Exceptio::Exceptio(int16_t index, const char* description, const char* comment) {
-	this->comment = comment;
-	this->description = description;
+Exceptio::Exceptio(int16_t index, const wchar_t* description, const wchar_t* comment) {
+	this->comment = std::wstring(comment);
+	this->description = std::wstring(description);
+	this->index = checking_index(index) ? index : INT_PLUG;
+}
+
+// index - number of 16-bit integer for your enumeration and lists (if you see INT_PLUG you made a mistake)
+// description - string which should describe the problem
+// comment - optional str
+Exceptio::Exceptio(int16_t index, const std::wstring& description, const std::wstring& comment) {
+	this->comment = std::wstring(comment);
+	this->description = std::wstring(description);
 	this->index = checking_index(index) ? index : INT_PLUG;
 }
 
@@ -56,21 +88,21 @@ bool checking_index_for_out(Exceptio& a) {
 	return a.get_raw_index() != INT_PLUG;
 }
 
-const char* Exceptio::get_raw_description() {
+const std::wstring Exceptio::get_raw_description() {
 	return this->description;
 }
 
 bool checking_description_for_out(Exceptio& a) {
-	return strcmp(a.get_raw_description(), STR_PLUG);
+	return a.get_raw_description() != STR_PLUG;
 	// returns 0 if strs are equal
 }
 
-const char* Exceptio::get_raw_comment() {
+const std::wstring Exceptio::get_raw_comment() {
 	return this->comment;
 }
 
 bool checking_comment_for_out(Exceptio& a) {
-	return strcmp(a.get_raw_comment(), STR_PLUG);
+	return a.get_raw_comment() != STR_PLUG;
 	// returns 0 if strs are equal
 }
 
@@ -80,12 +112,12 @@ int16_t Exceptio::get_index() {
 	return int16_t(this->index);
 }
 
-const char* Exceptio::get_description() {
-	return checking_description_for_out(*this) ? this->get_raw_description() : "Your exceptio was created without description.";
+const std::wstring Exceptio::get_description() {
+	return checking_description_for_out(*this) ? this->get_raw_description() : L"Your exceptio was created without description.";
 }
 
-const char* Exceptio::get_comment() {
-	return checking_comment_for_out(*this) ? this->get_raw_comment() : "Your exceptio was created without comment.";
+const std::wstring Exceptio::get_comment() {
+	return checking_comment_for_out(*this) ? this->get_raw_comment() : L"Your exceptio was created without comment.";
 }
 
 ////////////////////////////////////////////////////////////////////////////
