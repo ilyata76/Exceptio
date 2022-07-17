@@ -7,57 +7,61 @@ namespace tia {
 	}
 
 	Exceptio::Exceptio(int index) {
-		this->comment = std::wstring(STR_PLUG);
-		this->description = std::wstring(STR_PLUG);
-		this->index = checking_index(index) ? index : INT_PLUG;
+		this->comment = std::wstring(TIA_EXCEPTIO_STR_PLUG);
+		this->description = std::wstring(TIA_EXCEPTIO_STR_PLUG);
+		this->index = checking_index(index) ? index : TIA_EXCEPTIO_INT_PLUG;
 	}
 
 	Exceptio::Exceptio(const wchar_t* description) {
-		this->comment = std::wstring(STR_PLUG);
+		this->comment = std::wstring(TIA_EXCEPTIO_STR_PLUG);
 		this->description = std::wstring(description);
-		this->index = INT_PLUG;
+		this->index = TIA_EXCEPTIO_INT_PLUG;
 	}
 
 	Exceptio::Exceptio(const std::wstring& description) {
-		this->comment = std::wstring(STR_PLUG);
+		this->comment = std::wstring(TIA_EXCEPTIO_STR_PLUG);
 		this->description = std::wstring(description);
-		this->index = INT_PLUG;
+		this->index = TIA_EXCEPTIO_INT_PLUG;
 	}
 
 	Exceptio::Exceptio(const wchar_t* description, const wchar_t* comment) {
 		this->comment = std::wstring(comment);
 		this->description = std::wstring(description);
-		this->index = INT_PLUG;
+		this->index = TIA_EXCEPTIO_INT_PLUG;
 	}
 
 	Exceptio::Exceptio(const std::wstring& description, const std::wstring& comment) {
 		this->comment = std::wstring(comment);
 		this->description = std::wstring(description);
-		this->index = INT_PLUG;
+		this->index = TIA_EXCEPTIO_INT_PLUG;
 	}
 
 	Exceptio::Exceptio(int index, const wchar_t* description) {
-		this->comment = std::wstring(STR_PLUG);
+		this->comment = std::wstring(TIA_EXCEPTIO_STR_PLUG);
 		this->description = std::wstring(description);
-		this->index = checking_index(index) ? index : INT_PLUG;
+		this->index = checking_index(index) ? index : TIA_EXCEPTIO_INT_PLUG;
 	}
 
 	Exceptio::Exceptio(int index, const std::wstring& description) {
-		this->comment = std::wstring(STR_PLUG);
+		this->comment = std::wstring(TIA_EXCEPTIO_STR_PLUG);
 		this->description = std::wstring(description);
-		this->index = checking_index(index) ? index : INT_PLUG;
+		this->index = checking_index(index) ? index : TIA_EXCEPTIO_INT_PLUG;
 	}
 
 	Exceptio::Exceptio(int index, const wchar_t* description, const wchar_t* comment) {
 		this->comment = std::wstring(comment);
 		this->description = std::wstring(description);
-		this->index = checking_index(index) ? index : INT_PLUG;
+		this->index = checking_index(index) ? index : TIA_EXCEPTIO_INT_PLUG;
 	}
 
 	Exceptio::Exceptio(int index, const std::wstring& description, const std::wstring& comment) {
 		this->comment = std::wstring(comment);
 		this->description = std::wstring(description);
-		this->index = checking_index(index) ? index : INT_PLUG;
+		this->index = checking_index(index) ? index : TIA_EXCEPTIO_INT_PLUG;
+	}
+
+	Exceptio::~Exceptio() {
+		return;
 	}
 
 	bool Exceptio::operator == (Exceptio& a) {
@@ -69,7 +73,7 @@ namespace tia {
 	}
 
 	bool checking_index_for_out(Exceptio& a) {
-		return a.get_raw_index() != INT_PLUG;
+		return a.get_raw_index() != TIA_EXCEPTIO_INT_PLUG;
 	}
 
 	const std::wstring Exceptio::get_raw_description() {
@@ -77,7 +81,7 @@ namespace tia {
 	}
 
 	bool checking_description_for_out(Exceptio& a) {
-		return a.get_raw_description() != STR_PLUG; // returns 0 if strs are equal
+		return a.get_raw_description() != TIA_EXCEPTIO_STR_PLUG; // returns 0 if strs are equal
 	}
 
 	const std::wstring Exceptio::get_raw_comment() {
@@ -85,7 +89,7 @@ namespace tia {
 	}
 
 	bool checking_comment_for_out(Exceptio& a) {
-		return a.get_raw_comment() != STR_PLUG; // returns 0 if strs are equal
+		return a.get_raw_comment() != TIA_EXCEPTIO_STR_PLUG; // returns 0 if strs are equal
 	}
 
 	//////////////////////////////////////////////////////////////////////////// GETTERS
@@ -102,7 +106,7 @@ namespace tia {
 		return checking_comment_for_out(*this) ? this->get_raw_comment() : L"Your exceptio was created without comment.";
 	}
 
-	const std::wstring Exceptio::what() {
+	std::wstring Exceptio::what() {
 		return (L"[" + std::to_wstring(this->get_index()) + L"]" + this->get_description());
 	}
 

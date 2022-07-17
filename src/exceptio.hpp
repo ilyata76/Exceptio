@@ -2,21 +2,21 @@
 
 
 
-#ifndef EXCEPTIO_HPP
-#define EXCEPTIO_HPP
+#ifndef TIA_EXCEPTIO_HPP
+#define TIA_EXCEPTIO_HPP
 
-	#define INT_PLUG -17341
-	#define STR_PLUG L"\0"
+	constexpr auto TIA_EXCEPTIO_INT_PLUG = -17341;
+	constexpr auto TIA_EXCEPTIO_STR_PLUG = L"\0";
 
 	#include <string>
 
 	namespace tia {
 
-	// (int)index, (std::wstring)description, (std::wstring)comment
+		// (int)index, (std::wstring)description, (std::wstring)comment
 		class Exceptio {
 
 			protected:
-				int index; // -32k +32k
+				int index;
 				std::wstring description;
 				std::wstring comment;
 
@@ -56,8 +56,10 @@
 				// COMMENT - optional wstr
 				Exceptio(int index, const std::wstring& description, const std::wstring& comment);
 
+				virtual ~Exceptio();
+
 			//
-				bool operator == (Exceptio& a);
+				virtual bool operator == (Exceptio& a);
 			//
 			protected:
 				int get_raw_index();
@@ -77,7 +79,7 @@
 				virtual int get_index();
 				virtual std::wstring get_description();
 				virtual std::wstring get_comment();
-				virtual const std::wstring what();
+				virtual std::wstring what();
 
 		};
 		
