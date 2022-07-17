@@ -71,7 +71,12 @@
 				virtual ~Assert();
 
 		};
+	
+	#define ASSERT(condition) { tia::Assert a; a(condition, L"by ASSERT"); }
+	//#define ASSERT(condition, description) { tia::Assert a; a(condition, description); }
 
 	}
+
+	
 
 #endif // !MY_ASSERT_HPP

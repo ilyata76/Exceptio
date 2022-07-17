@@ -40,15 +40,25 @@ int main() {
 
 			try {
 				tia::Assert assert;
+				
 				std::wcout << " catched by Exceptio!\n";
 				std::wcout << "Override what(): " << E.what() << L"\n";
 				std::wcout << "Assert false condition...";
+				
 				assert(bool(0));
 
 			} catch(tia::Exceptio& E) {
-				std::wcout << " catched by Exceptio!\n";
 
 
+				try {
+
+					std::wcout << " catched by Exceptio!\n";
+					std::wcout << "ASSERT false condition...";
+
+					ASSERT(0);
+				} catch (tia::Exceptio& E) {
+					std::wcout << " catched by Exceptio!\n";
+				}
 
 			}
 
