@@ -3,7 +3,7 @@
 #ifndef MY_ASSERT_HPP
 #define MY_ASSERT_HPP
 
-#include "./exceptio.hpp"
+	#include "./exceptio.hpp"
 
 	namespace tia {
 
@@ -17,7 +17,7 @@
 
 				// Your INDEX
 				// COMMENT: "It was caused by using Assert"
-				Assert(bool condition, int16_t index) {
+				Assert(bool condition, int index) {
 					if (!condition) throw Exceptio(index, STR_PLUG, L"It was caused by using Assert");
 				}
 
@@ -45,23 +45,23 @@
 
 				// Your INDEX, DESCRIPTION when calling and Exception
 				// COMMENT: "It was caused by using Assert"
-				Assert(bool condition, int16_t index, const wchar_t* description) {
+				Assert(bool condition, int index, const wchar_t* description) {
 					if (!condition) throw Exceptio(index, description, L"It was caused by using Assert");
 				}
 
 				// Your INDEX, DESCRIPTION when calling and Exception
 				// COMMENT: "It was caused by using Assert"
-				Assert(bool condition, int16_t index, const std::wstring& description) {
+				Assert(bool condition, int index, const std::wstring& description) {
 					if (!condition) throw Exceptio(index, description, L"It was caused by using Assert");
 				}
 
 				// Your INDEX, DESCRIPTION and COMMENT when calling and Exception
-				Assert(bool condition, int16_t index, const wchar_t* description, const wchar_t* comment) {
+				Assert(bool condition, int index, const wchar_t* description, const wchar_t* comment) {
 					if (!condition) throw Exceptio(index, description, comment);
 				}
 
 				// Your INDEX, DESCRIPTION and COMMENT when calling and Exception
-				Assert(bool condition, int16_t index, const std::wstring& description, const std::wstring& comment) {
+				Assert(bool condition, int index, const std::wstring& description, const std::wstring& comment) {
 					if (!condition) throw Exceptio(index, description, comment);
 				}
 		};

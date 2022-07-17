@@ -5,8 +5,8 @@
 #ifndef EXCEPTIO_HPP
 #define EXCEPTIO_HPP
 
-#define INT_PLUG INT16_MIN
-#define STR_PLUG L"\0"
+	#define INT_PLUG -17341
+	#define STR_PLUG L"\0"
 
 	#include <string>
 
@@ -14,13 +14,13 @@
 
 	// (int)index, (std::wstring)description, (std::wstring)comment
 		class Exceptio {
+
 			protected:
 				int index; // -32k +32k
 				std::wstring description;
 				std::wstring comment;
 
 			public:
-			//
 				// INDEX - number of 16-bit integer for your enumeration and lists (if you see INT_PLUG you made a mistake)
 				Exceptio(int index);
 
@@ -66,17 +66,21 @@
 
 				// Checks whether the index was entered or entered correctly (if yes returns not 0)
 				friend bool checking_index_for_out(Exceptio&);
+
 				// Checks whether the description string was entered (if yes returns not 0)
 				friend bool checking_description_for_out(Exceptio&);
+
 				// Checks whether the comment string was entered (if yes returns not 0)
 				friend bool checking_comment_for_out(Exceptio&);
 			//
 			public:
-				int get_index();
-				const std::wstring get_description();
-				const std::wstring get_comment();
+				virtual int get_index();
+				virtual std::wstring get_description();
+				virtual std::wstring get_comment();
+				virtual const std::wstring what();
 
 		};
+		
 	}
 // childs by exceptio?
 #endif
