@@ -11,11 +11,13 @@ set (ENTRYPOINT
 set (HEADERS 
     ./src/exceptio.hpp
     ./src/assert.hpp
+    ./src/assert_3rd.hpp
 )
 
 set (SOURCES 
     ./src/exceptio.cpp
     ./src/assert.cpp
+    ./src/assert_3rd.cpp
 )
 
 add_library ( ${PROJECT_NAME} STATIC ${HEADERS} ${SOURCES} )

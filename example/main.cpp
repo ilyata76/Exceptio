@@ -1,5 +1,6 @@
 ﻿#include "../src/exceptio.hpp"
 #include "../src/assert.hpp"
+#include "../src/assert_3rd.hpp"
 
 #include <iostream>
 
@@ -57,7 +58,29 @@ int main() {
 
 					ASSERT(0);
 				} catch (tia::Exceptio& E) {
-					std::wcout << " catched by Exceptio!\n";
+					
+					
+					try {
+						std::wcout << " catched by Exceptio!\n";
+
+						std::wcout << "Assert_t false condition...";
+						tia::Assert_t{}(0, std::exception{});
+					}
+					catch (std::exception& E) {
+
+						try {
+							std::wcout << " catched by std::exception!\n";
+
+							std::wcout << "ASSERTT false condition...";
+							ASSERTT(0);
+						}
+						catch (tia::Exceptio& E) {
+
+							std::wcout << " catched by tia::Exceptio!\n";
+
+						}
+					}
+
 				}
 
 			}
