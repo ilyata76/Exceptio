@@ -78,6 +78,14 @@ int main() {
 
 							std::wcout << " catched by tia::Exceptio!\n";
 
+							std::wcout << L"Creating exception: "; std::exception exc("sus");
+							std::wcout << L"exc.what(): " << exc.what() << L'\n';
+
+							std::wcout << L"Exceptio by exception deepcopying: " << (tia::Exceptio{ 100 } = exc).get_description() << L'\n';
+							std::wcout << L"Exceptio by exception constructor: " << (tia::Exceptio{ exc }.get_description()) << L'\n';
+
+
+
 						}
 					}
 

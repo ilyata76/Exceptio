@@ -60,12 +60,28 @@ namespace tia {
 		this->index = checking_index(index) ? index : TIA_EXCEPTIO_INT_PLUG;
 	}
 
+	Exceptio::Exceptio(std::exception _exc) {
+		std::string a{ _exc.what() };
+
+		this->index = 100;
+		this->description = std::wstring{ a.begin(), a.end() };
+		this->comment = L"by std::exception";
+	}
+
 	Exceptio::~Exceptio() {
 		return;
 	}
 
 	bool Exceptio::operator == (Exceptio& a) {
 		return bool(this->index == a.index && this->description == a.description && this->comment == a.comment);
+	}
+
+	Exceptio Exceptio::operator = (std::exception& exc) {
+
+		std::string a{ exc.what() };
+
+		this->description = std::wstring{ a.begin(), a.end() };
+		return *this;
 	}
 
 	int Exceptio::get_raw_index() {

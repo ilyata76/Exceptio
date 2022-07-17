@@ -56,10 +56,13 @@
 				// COMMENT - optional wstr
 				Exceptio(int index, const std::wstring& description, const std::wstring& comment);
 
+				Exceptio(std::exception _exc);
+
 				virtual ~Exceptio();
 
 			//
 				virtual bool operator == (Exceptio& a);
+				virtual Exceptio operator = (std::exception& exc);
 			//
 			protected:
 				int get_raw_index();
