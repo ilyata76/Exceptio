@@ -7,10 +7,8 @@
 
 	namespace tia {
 
-		// based on EXCEPTIO_HPP
 		class Assert_t {
 			public:
-				// COMMENT: "It was caused by using Assert"
 
 				Assert_t() {};
 
