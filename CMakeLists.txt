@@ -1,17 +1,17 @@
 # MAKES LIBRARY
 # MIN VERSION
-cmake_minimum_required(VERSION 3.18)
+cmake_minimum_required(VERSION 3.16)
 
 # SET PROJECT
-project(EXCEPTIO_CPP_LIBRARY)
+project(exceptio)
 
-# set (ENTRYPOINT
-# 	./example/main.cpp
-# )
+set (ENTRYPOINT
+	./example/main.cpp
+)
 
 set (HEADERS 
-    ./include/exceptio.hpp
-    ./include/assert.hpp
+    ./src/exceptio.hpp
+    ./src/assert.hpp
 )
 
 set (SOURCES 
@@ -24,8 +24,13 @@ set (SOURCES
 # 	${SOURCES}
 # )
 
-add_library ( ${PROJECT_NAME}
-    STATIC 
-    ${HEADERS}
-    ${SOURCES}
+add_library ( ${PROJECT_NAME} STATIC 
+    ${HEADERS} ${SOURCES}
 )
+
+add_executable(
+    test
+    ${ENTRYPOINT}
+)
+
+target_link_libraries(test ${PROJECT_NAME})
