@@ -1,36 +1,103 @@
 # Exceptio  
-Фундамент для построения здания исключений, разных и сложных  
-Нужно лишь подключить заголовочный файл (с ресурсами к нему)  
   
-## class Exceptio  
-Реализует простейшее исключение для блока `try-catch`, которое может в себя включать:  
-- index (`int`), индекс, используемый для перечисления
-- description(`const wchar_t*`, `const std::wstring&`), описание ошибки
-- comment(`const wchar_t*`, `const std::wstring&`), комментарий, любой другой текст, позволяющий как-то что-то облегчить
+## Exceptio
+Implements a simple exception for a block `try-catch`  
+   
+Class fields:
+```cpp
+int index; // error code
+std::wstring description; // main description
+std::wstring comment; // anything that can help
+```
+
+Constructors:
+```cpp
+Exceptio(int index);
+Exceptio(int index, const wchar_t* description);
+Exceptio(int index, const std::wstring& description);
+Exceptio(const wchar_t* description);
+Exceptio(const std::wstring& description);
+Exceptio(const wchar_t* description, const wchar_t* comment);
+Exceptio(const std::wstring& description, const std::wstring& comment);
+Exceptio(int index, const wchar_t* description, const wchar_t* comment);
+Exceptio(int index, const std::wstring& description, const std::wstring& comment);
+
+Exceptio(std::exception _exc); // std::exception
+
+virtual ~Exceptio();
+```
+
+Methods:
+```cpp
+virtual bool operator == (Exceptio& a);
+virtual Exceptio operator = (std::exception& exc); // std::exception
+
+virtual int get_index();
+virtual std::wstring get_description();
+virtual std::wstring get_comment();
+virtual std::wstring what();
+```
+
+
+Allows you to create heir classes by overloading virtual functions. For example:
+```cpp
+using tia::Exceptio;
+class Logic_Error : public tia::Exceptio {
+public:
+    Logic_Error(int _index) : Exceptio(_index) {};
+    Logic_Error(int _index, const wchar_t* _discr) : Exceptio(_index, _discr) {};
+    
+    std::wstring what() override {
+        return std::wstring(L"Logic Error!");
+    };
+    
+    ~Logic_Error() {
+        std::wcout << "LE object was Destroyed\n";
+    }
+};
+```
+  File `exceptio.hpp`  
+
+
+## Assert
+Implements the simplest version of the assert version, based on calling the `operator()` current class.  
+As a result of which the exception `Exceptio` is called.
+
+Macro
+```cpp
+#define ASSERT(condition) { tia::Assert a; a(condition, L"by ASSERT"); }
+```
   
-Представлено несколько конструкторов, но каждый из них можно заменить полным, используя "заглушки"  
-`INT_PLUG` и `STR_PLUG`, которые бы засчитывались как отсутсвующие параметры  
-Функции `checking_<>_for_out` проверяют на соответствие полей класса каким-либо реальным  
-параметрам, заглушки дают false.  
+  File `assert.hpp`  
+
+## Assert_t
+Assert implementation via `template`:
+```cpp
+template<typename EXC>
+void operator()(bool condition, EXC exc);
+```
+Macro
+```cpp
+#define ASSERTT(condition, index) {tia::Assert_t{}(condition, tia::Exceptio{100, L"by ASSERTT"});}
+```
+Example
+```cpp
+tia::Assert_t{}(0, std::exception{});
+```
+
+  File `assert_3rd.hpp`
+
+# Compiling with CMake  
   
-Подключаемый файл `exceptio.hpp`  
+## Separately  
+```console
+cd .\build\
+cmake -DBUILD_TEST=ON ..
+cmake --build .
+```
   
-## class Assert
-Реализует простейшую версию версию assert'a, основанную на вызове конструктора настоящего класса,  
-вследствие чего вызывается исключение `Exceptio`. Необходимо нахожение внутри блока `try-catch`.  
-  
-Подключаемый файл `my_assert.hpp`  
-  
-# Компиляция с помощью CMake  
-  
-## Отдельно  
-Создаём папку, в которой будем собирать проект, например, `build`.  
-После:  
-+ `cd .\build\`
-+ `cmake ..`
-+ `cmake --build .`
-  
-## С чем-либо  
-Добавляем как минимум папки `/src` и `/include` и файл `CMakeLists.txt` в любую директорию  
-После в заглавном файле CMakeLists добавляем эту директорию как подпроект  
-Потом прилинковать библиотеку через её имя, например, так: `target_link_libraries( ${PROJECT} EXCEPTIO_CPP_LIBRARY )`  
+## In project  
+```cmake
+add_subdirectory(path_to_folder)
+  target_link_libraries( ${PROJECT} exceptio )
+```
