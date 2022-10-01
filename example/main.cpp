@@ -1,6 +1,6 @@
-﻿#include "../src/exceptio.hpp"
-#include "../src/assert.hpp"
-#include "../src/assert_3rd.hpp"
+﻿#include <tia/assert.hpp>
+#include <tia/assert_3rd.hpp>
+#include <tia/exceptio.hpp>
 
 #include <iostream>
 
